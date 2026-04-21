@@ -75,7 +75,7 @@ function getDrinkName(selectElement) {
 
 function generateTableData() {
     const beverages = document.querySelectorAll('.beverage');
-    const tableBody = document.getElementById('order-table');
+    const tableBody = document.getElementById('order-table-body');
 
     if (!tableBody) return;
 
