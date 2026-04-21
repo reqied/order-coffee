@@ -16,6 +16,7 @@ function addNewBeverage() {
     form.insertBefore(newBeverage, addButtonDiv);
 
     updateTitles();
+    count++;
 }
 
 function updateTitles() {
@@ -35,17 +36,20 @@ function deleteBeverage(button) {
 
     beverageToRemove.remove();
     updateTitles();
+    count--;
 }
 
 function showModal() {
     const modal = document.getElementById('modal');
     modal.style.display = 'block';
+    modal.querySelector(".drink_count_frase").textContent = `Вы заказали ${count} ${pluralCount(count)}`;
 
     const modalClose = document.getElementById('modal-close');
 
     modalClose.onclick = () => {
         modal.style.display = 'none';
     };
+    console.log(count);
 }
 
 addButton.addEventListener('click', (e) => {
@@ -63,3 +67,15 @@ form.addEventListener('click', (e) => {
         deleteBeverage(e.target);
     }
 });
+
+function pluralCount(n) {
+    const n10 = n % 10;
+    const n100 = n % 100;
+    if ((n100 >= 11 && n100 <= 19) || n10 <= 1) {
+        return "напиток";
+    }
+    if (n10 >= 2 && n10 <= 4) {
+        return "напитка";
+    }
+    return "напитков";
+}
